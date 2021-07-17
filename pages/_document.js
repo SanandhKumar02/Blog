@@ -1,3 +1,5 @@
+//Server side rendering of style sheets [DON'T MESS WITH THIS]
+
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 

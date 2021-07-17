@@ -13,13 +13,14 @@ const BannerInfo = styled.div`
     justify-content: space-between;
 `
 
+//Admin props for editing the post authored by the currently logged in user
 export default function PostFeed({ posts, admin }){
-    return posts ? posts.map((post) => <PostItem post={post} key={post.slug} admin={admin} />) : null;
+    return posts ? posts.map((post) => <PostItem post={post} key={post.slug} admin={admin} />) : null; 
 }
 
 function PostItem({ post, admin = false }){
 
-    //Limits the word count in post card.
+    //Show the word count in post card.
     const wordCount = post?.content.trim().split(/\s+/g).length;
     const minutesToRead = (wordCount/100+1).toFixed(0);
 

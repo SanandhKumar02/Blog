@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { useContext } from 'react';
-import { UserContext } from '../lib/context';
+import { UserContext } from '../../lib/authContext';
+
 
 
 const Navbar = () => {
@@ -12,7 +13,7 @@ const Navbar = () => {
             <ul>
                 <li>
                     <Link href="/" passHref>
-                        <button>HOME</button>
+                        <a>HOME</a>
                     </Link>
                 </li>
 
@@ -21,7 +22,7 @@ const Navbar = () => {
                     <>
                         <li>
                             <Link href="/admin" passHref>
-                                <button>Write Post</button>
+                                <a>Write Post</a>
                             </Link>
                         </li>
                         <li>
@@ -34,7 +35,7 @@ const Navbar = () => {
                 {!username && (
                     <li>
                         <Link href="/enter" passHref>
-                            <button>Log In</button>
+                            <a>Log In</a>
                         </Link>
                     </li>
                 )}
