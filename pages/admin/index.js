@@ -16,14 +16,14 @@ const AdminPage = () => {
                 <CreateNewPost />
                 <PostList />
             </AuthCheck>
-        </div> 
+        </div>
     );
 }
- 
+
 export default AdminPage;
 
 
-function PostList(){
+function PostList() {
     const ref = firestore.collection('users').doc(auth.currentUser.uid).collection('posts');
     const query = ref.orderBy('createdAt');
     const [querySnapshot] = useCollection(query); //react-firebase-hook gets relatime data
@@ -38,7 +38,7 @@ function PostList(){
     );
 }
 
-function CreateNewPost(){
+function CreateNewPost() {
     const router = useRouter();
     const { username } = useContext(UserContext);
 
@@ -49,7 +49,7 @@ function CreateNewPost(){
     const isValid = title.length > 3 && title.length < 50;
 
 
-    async function createPost(e){
+    async function createPost(e) {
         e.preventDefault();
         const uid = auth.currentUser.uid;
         const ref = firestore.collection('users').doc(uid).collection('posts').doc(slug);
@@ -73,12 +73,13 @@ function CreateNewPost(){
 
     };
 
-    return(
+
+    return (
         <form onSubmit={createPost}>
-            <input 
-                value={title} 
+            <input
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Blog Title" 
+                placeholder="Blog Title"
             />
             <button type="submit" disabled={!isValid}>Create Post</button>
         </form>

@@ -4,11 +4,11 @@ import Loader from "../Loader";
 
 
 const MediaUploader = () => {
-    
+
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
     const [downloadURL, setDownloadURL] = useState(null);
-    
+
     async function uploadFile(e) {
 
         const file = Array.from(e.target.files)[0];
@@ -17,7 +17,7 @@ const MediaUploader = () => {
         const ref = storage.ref(`uploads/${auth.currentUser.uid}/${Date.now()}.${ext}`);
 
         setUploading(true);
-        
+
         const uploadTask = ref.put(file);
 
         uploadTask.on(STATE_CHANGED, (snapshot) => {
@@ -34,7 +34,7 @@ const MediaUploader = () => {
             });
     };
 
-    return (  
+    return (
         <div>
             <Loader show={uploading} />
             {uploading && <h4>Upload in progress: {progress}</h4>}
@@ -51,5 +51,5 @@ const MediaUploader = () => {
         </div>
     );
 }
- 
+
 export default MediaUploader;
