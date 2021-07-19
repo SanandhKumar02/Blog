@@ -2,44 +2,43 @@
 import Link from 'next/link';
 import { useContext } from 'react';
 import { UserContext } from '../../lib/authContext';
-
-
+import { NavbarContainer, NavItem, NavImg } from './NavbarStyles';
 
 const Navbar = () => {
     const { user, username } = useContext(UserContext);
 
     return (  
         <nav className="navbar">
-            <ul>
-                <li>
+            <NavbarContainer>
+                <NavItem>
                     <Link href="/" passHref>
                         <a>HOME</a>
                     </Link>
-                </li>
+                </NavItem>
 
                 {/* if the user has a username */}
                 {username && (
                     <>
-                        <li>
+                        <NavItem>
                             <Link href="/admin" passHref>
                                 <a>Write Post</a>
                             </Link>
-                        </li>
-                        <li>
-                            <Link href={`/${username}`} passHref><img className="profileImg" src={user.photoURL} alt="User Image"/>
+                        </NavItem>
+                        <NavItem>
+                            <Link href={`/${username}`} passHref><NavImg className="profileImg" src={user.photoURL} alt="User Image"/>
                             </Link>
-                        </li>
+                        </NavItem>
                     </>
                 )}
 
                 {!username && (
-                    <li>
+                    <NavItem>
                         <Link href="/enter" passHref>
                             <a>Log In</a>
                         </Link>
-                    </li>
+                    </NavItem>
                 )}
-            </ul>
+            </NavbarContainer>
         </nav>
     );
 }

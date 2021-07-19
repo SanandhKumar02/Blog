@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { auth, STATE_CHANGED, storage } from "../lib/firebase";
-import Loader from "./Loader";
+import { auth, STATE_CHANGED, storage } from "../../lib/firebase";
+import Loader from "../Loader";
 
 
 const MediaUploader = () => {
