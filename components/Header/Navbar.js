@@ -2,17 +2,18 @@
 import Link from 'next/link';
 import { useContext } from 'react';
 import { UserContext } from '../../lib/authContext';
-import { NavbarContainer, NavItem, NavImg } from './NavbarStyles';
+import { NavContainer, NavUl, NavItem, NavImg } from './NavbarStyles';
+import { SignOutButton } from '../../pages/auth'
 
 const Navbar = () => {
     const { user, username } = useContext(UserContext);
 
     return (  
-        <nav className="navbar">
-            <NavbarContainer>
+        <NavContainer>
+            <NavUl>
                 <NavItem>
                     <Link href="/" passHref>
-                        <a>HOME</a>
+                        <em><strong>BLOG</strong></em>
                     </Link>
                 </NavItem>
 
@@ -25,6 +26,9 @@ const Navbar = () => {
                             </Link>
                         </NavItem>
                         <NavItem>
+                            <SignOutButton />
+                        </NavItem>
+                        <NavItem>
                             <Link href={`/${username}`} passHref><NavImg className="profileImg" src={user.photoURL} alt="User Image"/>
                             </Link>
                         </NavItem>
@@ -33,13 +37,13 @@ const Navbar = () => {
 
                 {!username && (
                     <NavItem>
-                        <Link href="/enter" passHref>
+                        <Link href="/auth" passHref>
                             <a>Log In</a>
                         </Link>
                     </NavItem>
                 )}
-            </NavbarContainer>
-        </nav>
+            </NavUl>
+        </NavContainer>
     );
 }
  

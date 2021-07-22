@@ -4,6 +4,7 @@ import Loader from '../components/Loader';
 import { firestore, fromMillis, postToJSON } from '../lib/firebase';
 
 import { useState } from 'react';
+import Hero from '../components/Hero/Hero';
 
 // Max post to query per page
 const LIMIT = 10;
@@ -53,8 +54,8 @@ export default function Home(props) {
   };
 
   return (
-    <main>
-     
+    <>
+      <Hero />
       <PostFeed posts={posts} />
 
       {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
@@ -62,6 +63,7 @@ export default function Home(props) {
       <Loader show={loading} />
 
       {postsEnd && 'You have reached the end!'}
-    </main>
+
+    </>
   );
 }

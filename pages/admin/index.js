@@ -11,12 +11,12 @@ import toast from 'react-hot-toast';
 
 const AdminPage = () => {
     return (
-        <div>
+        <>
             <AuthCheck>
                 <CreateNewPost />
                 <PostList />
             </AuthCheck>
-        </div>
+        </>
     );
 }
 

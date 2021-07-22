@@ -12,7 +12,7 @@ function App({ Component, pageProps }) {
     <UserContext.Provider value={ userData }>
       <GlobalStyles />
       <Navbar />
-      <Component {...pageProps} />
+      <main><Component {...pageProps} /></main>
       <Toaster />
     </UserContext.Provider>
   );

@@ -2,12 +2,15 @@ import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../lib/authContext";
 import debounce from "lodash.debounce";
+import { useRouter } from "next/router";
+import { Button } from '../styles/GlobalComponentsStyles';
+
 
 export default function Enter(props) {
     const { user , username } = useContext(UserContext);
-    
+
     return ( 
-        <main>
+        <>
             {
                 user ? 
                     !username ? <UsernameForm /> : <SignOutButton />
@@ -15,23 +18,34 @@ export default function Enter(props) {
                     <SignInButton />
             }
             
-        </main>
+        </>
     );
 }
 
 function SignInButton(){
+
+    const router = useRouter();
     const signInWithGoogle = async () => {
+        
         await auth.signInWithPopup(googleAuthProvider);
+        router.push(`/`);
+        
     };
 
     return(
-        <button onClick= {signInWithGoogle}>Sign in with Google</button>
+        <Button onClick= {signInWithGoogle}>Sign in with Google</Button>
     );
 }
 
-function SignOutButton(){
+export function SignOutButton(){
+    const router = useRouter();
+
+    const signOut = () => {
+        auth.signOut();
+        router.reload();
+    }
     return (
-        <button onClick= {() => auth.signOut()}>Sign Out</button>
+        <button onClick= {signOut}>Sign Out</button>
     );
 
 }
@@ -104,7 +118,7 @@ function UsernameForm(){
 
                     <input name="username" placeholder="username" value={formValue} onChange={onChanged} />
                     <UsernameMessage username={formValue} isValid={isValid} loading={loading} />
-                    <button type="submit" disabled={!isValid}>Add Username</button>
+                    <Button type="submit" disabled={!isValid}>Add Username</Button>
 
                     <h3>States</h3>
                     <div>

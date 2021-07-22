@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.6rem;
     background: white;
     color: black;
+    margin: auto;
   }
   h1,h2,h3,h4,h5,h6,button {
     font-family: sans-serif;
@@ -29,7 +30,9 @@ const GlobalStyles = createGlobalStyle`
   li{
     list-style: none;
   }
-
+  main{
+    margin-top: 60px;
+  }
 `;
 
 export default GlobalStyles;
